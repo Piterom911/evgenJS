@@ -1,4 +1,4 @@
-console.log('Lesson 5');
+// console.log('Lesson 5');
 
 // Keyword - this
 // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/this

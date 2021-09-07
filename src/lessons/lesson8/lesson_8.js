@@ -46,7 +46,7 @@ const tree = {
 
 for (var i = 0; i < 10; i++) {
 	setTimeout(function () {
-		console.log(i);
+		// console.log(i);
 	}, 100);
 }
 
@@ -148,14 +148,14 @@ const tree2 = {
 // Task 21
 // Что выведет консоль?
 
-Promise
-	.resolve()
-	.then(() => console.log(1))
-	.then(() => console.log(2))
-	.then(() => console.log(3));
-
-Promise
-	.resolve()
-	.then(() => console.log(4))
-	.then(() => console.log(5))
-	.then(() => console.log(6));
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(1))
+// 	.then(() => console.log(2))
+// 	.then(() => console.log(3));
+//
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(4))
+// 	.then(() => console.log(5))
+// 	.then(() => console.log(6));
