@@ -18,3 +18,14 @@ console.log('lesson 3');
 
 // just a plug
 export default ()=>{};
+
+function delay(ms: number) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve()
+        }, ms)
+    })
+}
+
+// delay(3000).then(() => alert('выполнилось через 3 секунды'))
+// .then(() => delay(1600).then(() => console.log('Hello')))
