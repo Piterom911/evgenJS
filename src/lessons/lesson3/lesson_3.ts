@@ -35,10 +35,10 @@ function delay(ms: number) {
 // .then(() => delay(1600).then(() => console.log('Hello')))
 
 axios.get('https://jsonplaceholder.typicode.com/posts/1')
-    .then(res => console.log(res.data))
+    // .then(res => console.log(res.data))
 
 axios.delete('https://jsonplaceholder.typicode.com/posts/1')
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
 
 axios.post('https://jsonplaceholder.typicode.com/posts', {
     body: JSON.stringify({
@@ -51,7 +51,7 @@ axios.post('https://jsonplaceholder.typicode.com/posts', {
         'Content-type': 'application/json; charset=UTF-8',
     },
 })
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
 
 axios.put('https://jsonplaceholder.typicode.com/posts/1', {
     body: JSON.stringify({
@@ -64,4 +64,4 @@ axios.put('https://jsonplaceholder.typicode.com/posts/1', {
         'Content-type': 'application/json; charset=UTF-8',
     },
 })
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
