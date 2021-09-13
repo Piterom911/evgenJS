@@ -1,4 +1,7 @@
-console.log('lesson 3');
+import axios from "axios";
+import {log} from "util";
+
+// console.log('lesson 3');
 
 // Event loop
 // https://learn.javascript.ru/event-loop
@@ -17,7 +20,8 @@ console.log('lesson 3');
 
 
 // just a plug
-export default ()=>{};
+export default () => {
+};
 
 function delay(ms: number) {
     return new Promise(resolve => {
@@ -27,5 +31,37 @@ function delay(ms: number) {
     })
 }
 
-// delay(3000).then(() => alert('выполнилось через 3 секунды'))
+// delay(3000).then(() => console.log('выполнилось через 3 секунды'))
 // .then(() => delay(1600).then(() => console.log('Hello')))
+
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then(res => console.log(res.data))
+
+axios.delete('https://jsonplaceholder.typicode.com/posts/1')
+    .then(res => console.log(res))
+
+axios.post('https://jsonplaceholder.typicode.com/posts', {
+    body: JSON.stringify({
+        id: 1,
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    },
+})
+    .then(res => console.log(res))
+
+axios.put('https://jsonplaceholder.typicode.com/posts/1', {
+    body: JSON.stringify({
+        id: 1,
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    },
+})
+    .then(res => console.log(res))

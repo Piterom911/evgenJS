@@ -229,7 +229,7 @@ function flat(arr: any[]): any {
         return acc.concat(Array.isArray(val) ? flat(val) : val)
     }, [])
 }
-console.log(flat(arr1))
+// console.log(flat(arr1))
 
 // just a plug
 export default () => {};
