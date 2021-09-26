@@ -3,9 +3,6 @@
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
 // https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 
-import {log} from "util";
-import {rejects} from "assert";
-
 const pr1 = new Promise(res => res(10))
 const pr2 = new Promise(res => res(0))
 
@@ -34,7 +31,7 @@ const pr2 = new Promise(res => res(0))
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
 new Promise( res => {
-    console.log('Promise is created')
+    // console.log('Promise is created')
 })
 
 
@@ -44,7 +41,8 @@ new Promise( res => {
 // Получите данные промиса и выведите их в консоль
 new Promise( res => {
     res('Promise Data')
-}).then(console.log)
+})
+    // .then(console.log)
 
 
 // Task 03
@@ -54,8 +52,8 @@ new Promise( res => {
 new Promise( (res, rej) => {
     rej('Promise Error')
 })
-    .then(console.log)
-    .catch(console.log)
+    // .then(console.log)
+    // .catch(console.log)
 
 
 // Task 04
@@ -66,7 +64,7 @@ new Promise( (res, rej) => {
 new Promise( (res, rej) => {
     setTimeout(() => res('Promise Data'), 3000)
 })
-    .then(console.log)
+    // .then(console.log)
 
 
 // Task 05
@@ -78,7 +76,7 @@ new Promise( (res, rej) => {
 // вторая - `Promise is rejected with error: ${paramName}`
 // Создайте три обработчика события click для кнопок "Create Promise", "Resolve Promise", "Reject Promise".
 // Первый обработчик, создает промис, заполняет первые три свойства,
-// описаного выше объекта: свойство promise получает новый созданный промис,
+// описанного выше объекта: свойство promise получает новый созданный промис,
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
@@ -95,10 +93,10 @@ const handlePromise: handlePromiseType = {
     resolve: null,
     reject: null,
     onSuccess: (paramName: string) => {
-        console.log(`Promise is resolved with data: ${paramName}`)
+        // console.log(`Promise is resolved with data: ${paramName}`)
     },
     onError: (paramName: string) => {
-        console.log(`Promise is rejected with data: ${paramName}`)
+        // console.log(`Promise is rejected with data: ${paramName}`)
     },
 }
 
@@ -141,7 +139,7 @@ function onSuccess(par: any) {
 }
 
 function print(par: any) {
-    console.log(par)
+    // console.log(par)
 }
 
 
@@ -168,7 +166,7 @@ Promise.all([promise1, promise2, promise3])
         forLog.age = res[1].age
         forLog.ciy = res[2].name
 
-        console.log(forLog)
+        // console.log(forLog)
     })
 
 

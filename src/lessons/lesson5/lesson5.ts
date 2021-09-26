@@ -28,12 +28,21 @@
 type someObjType = {
     name: string;
     age: number;
+    greeting: () =>  string
 }
 
 let someObj:someObjType = {
     name: 'Eugene',
-    age: 32
+    age: 32,
+    greeting: () => ''
 }
+function greeting() {
+    //@ts-ignore
+    return `My name is ${this.name}. I am ${this.age}`
+}
+someObj.greeting = greeting
+
+console.log(someObj.greeting())
 
 // Task 02
 // реализовать счетчик counter в виде объекта со следующими методами:
@@ -44,18 +53,49 @@ let someObj:someObjType = {
 // rest current count - устанавливает значение счетчика равным 0
 // все методы должны ссылаться на сам объект
 
+const counter = {
+    currentCount: 0,
+    getCurrentCount() { return this.currentCount },
+    increment() { this.currentCount += 1; return this },
+    decrement() { this.currentCount -= 1; return this },
+    setCurrentCount(newVal: number) { this.currentCount = newVal; return this }
+}
+counter.setCurrentCount(23)
+console.log(counter.getCurrentCount())
+counter.increment()
+console.log(counter.getCurrentCount())
+counter.decrement()
+console.log(counter.getCurrentCount())
+
+
 // Task 03
 // переделайте код из Task 02, что бы сработал следующий код:
-// counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount() // 12
+counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount() // 12
+console.log(counter.getCurrentCount())
 
 // Task 04
 // Написать функцию конструктор myFirstConstructorFunc которая принимает 2 параметра name и age и возвращает объект
 // у которого будут эти свойства и метод greeting из Task 01
 
+function myFirstConstructorFunc(name: string, age: number) {
+    //@ts-ignore
+    this.name = name
+    //@ts-ignore
+    this.age = age
+    //@ts-ignore
+    this.greeting = someObj.greeting
+}
+
+//@ts-ignore
+const newInstance = new myFirstConstructorFunc('Roman', 31)
+console.log(newInstance.greeting())
+
 // Task 05 есть 2 объекта One и Two. С помощью bind и метода sayHello заставьте поздороваться объект One
 
-let One = {name: 'One'};
+let One: any = {name: 'One'};
 let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${this.name}`)}};
+//@ts-ignore
+Two.sayHello.bind(One)()
 
 // Task 06
 // создайте объект helperObj у которого есть следующие методы:
@@ -64,15 +104,46 @@ let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${t
 // greeting - используется функция sayHello из Task 05
 // можно использовать @ts-ignore
 
+const helperObj = {
+    //@ts-ignore
+    changeName(newName: string) {this.name = newName; return this},
+    //@ts-ignore
+    setAge(age: number) {this.age = age; return this},
+    //@ts-ignore
+    greeting: Two.sayHello
+}
+helperObj.changeName('Roman').setAge(31).greeting()
+
 // Bind
 // 1) Дана функция sumTwoNumbers, реализовать функцию bindNumber которая принимает функцию sumTwoNumbers и число, и
 // возвращает другую функцию, которое также принимает число и возвращает сумму этих чисел. Замыкание использовать нельзя
 function sumTwoNumbers(a:number,b:number):number {return a + b};
+function bindNumber(func: any, num: number) {
+    //@ts-ignore
+    const func2 = func.bind(this, num)
+    return function(num2: number) {
+        return func2(num2)
+    }
+}
+
+console.log(bindNumber(sumTwoNumbers, 2)(3))
 
 // 2) Напишите функцию которая принимает первым аргументом объект One, а вторым helperObj. Данная функция
 // возвращает другую функцию которая принимает строку в качестве аргумента и устанавливает ее свойству name объекта One
+const func2 = (obj: any, helperObj: any) => {
+    return function(str: string) {
+        helperObj.changeName.call(obj, str)
+    }
+}
+let res2 = func2(One, helperObj)
+res2('Roman')
+console.log(One)
 // 3) Одной строкой установить с помощью helperObj объекту Two поле age в значение 30
+helperObj.setAge.call(Two, 30)
+console.log(Two)
 // 4) Создать метод hi у объекта One, который всегда вызывает метод greeting объекта helperObj от имени Two
+One.hi = helperObj.greeting.bind(One)
+One.hi()
 
 // Реализовать задачи 2-4 из Bind с помощью Call
 
